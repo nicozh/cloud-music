@@ -1,4 +1,3 @@
-
 var http = require('http')
 var fs = require('fs')
 var url = require('url')
@@ -21,7 +20,7 @@ var server = http.createServer(function (request, response) {
 
     /******** 从这里开始看，上面不要看 ************/
 
-    console.log('方方说：含查询字符串的路径\n' + pathWithQuery)
+    console.log('含查询字符串的路径\n' + pathWithQuery)
 
     if(path==='/uptoken'){
         response.statusCode = 200
@@ -39,7 +38,6 @@ var server = http.createServer(function (request, response) {
         };
         var putPolicy = new qiniu.rs.PutPolicy(options);
         var uploadToken=putPolicy.uploadToken(mac);
-        console.log(uploadToken)
         response.write(`
         {
         "uptoken": "${uploadToken}"
