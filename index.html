@@ -10,9 +10,28 @@
     <link rel="stylesheet" href="./css/admin.css">
 </head>
 <body>
-    <div id="container">
-        <div id="pickfiles">点击上传或者将文件拖至此区域</div>
+    <div class="top-bar">音乐管理</div>
+    <div class="main-box">
+        <div class="layout-one">
+            <div class="music-list">歌曲列表</div>
+        </div>
+        <div class="content-box">
+            <div class="picture">
+                <div class="banner">
+                </div>
+                <div class="logo">admin</div>
+            </div>
+            <div class="upload">
+                <div class="new-music">
+                </div>
+                <div class="upload-area" id="uploadArea">
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="./js/music-list.js"></script>
+    <script src="./js/new-song.js"></script>
+    <script src="./js/upload-area.js"></script>
     <script src="./js/main.js"></script>
     <script src="./library/qiniu.min.js"></script>
     <script src="./library/plupload.full.min.js"></script>
