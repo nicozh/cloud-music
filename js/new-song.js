@@ -55,7 +55,8 @@
             }, function (error) {
                 console.error(error);
             });
-        }
+        },
+    
     }
     let controller = {
         init(view, model) {
@@ -64,6 +65,7 @@
             this.model = model
             this.view.render(this.model.data)
             this.bindEvents()
+            this.bindEventHub()
             window.eventHub.on('upload', (data) => {
                 this.view.render(data)
             })
@@ -74,14 +76,22 @@
             needs.map((string) => {
                 data[string] = this.view.$el.find(`[name="${string}"]`).val()
             })
-            window.eventHub.emit("create", data)
+
             this.model.create(data)
-                .then(() => { this.view.render({}) })
+                .then(() => {
+                    this.view.render({})
+                    window.eventHub.emit("create", this.model.data) //云端创建成功后发布数据
+                })
         },
         bindEvents() {
             this.view.$el.on("submit", 'form', (e) => {
                 e.preventDefault()
                 this.create()
+            })
+        },
+        bindEventHub() {
+                window.eventHub.on('liClick', (data) => {
+                this.view.render(data)
             })
         }
     }
