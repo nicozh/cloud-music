@@ -5,7 +5,7 @@
         <ul>
         <li>歌曲1</li>
         <li>歌曲2</li>
-        <li class="active">歌曲3</li>
+        <li>歌曲3</li>
         <li>歌曲4</li>
         <li>歌曲5</li>
         <li>歌曲6</li>
@@ -21,24 +21,48 @@
                     let li = $('<li></li>').text(song.name)
                     return li
                 })
-                console.log(liList)
+                // console.log(liList)
                 liList.map((li) => {
                     $(this.el).find('ul').append(li)
                 })
             }
 
-        }
+        },
+        
     }
     let model = {
         data: {
-            songs: []
+            songs: []      //[{name:'',singer:'',url:''}]
+        },
+        find() {
+            var query = new AV.Query('Song');
+            return query.find().then(
+                (Song) => {
+                    console.log(2)
+                    Song.map((item) => {
+                        this.data.songs.push(item.attributes)
+                    })
+                })
         }
     }
     let controller = {
         init(view, model) {
+
             this.view = view
             this.model = model
             this.view.render()
+            this.bindEvents()
+            this.getAllSongs()
+            this.bindEventHub()
+            this.bindEvents()
+        },
+        getAllSongs(){
+            this.model.find().then(() => {
+                this.view.render(this.model.data)
+            })
+        },
+    
+        bindEventHub() {
             window.eventHub.on("create", (data) => {
                 this.model.data.songs.push(data)
                 this.view.render(this.model.data)
