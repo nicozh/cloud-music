@@ -3,6 +3,7 @@
     let view = {
         el: '.upload',
         template: `
+        <div class="percent"></div>
         <div class="upload-area" id="uploadArea">
         <div class="page-title">上传区</div>
         <div class="upload-button" id="uploadButton">点击上传或者将文件拖至此区域</div>
@@ -12,6 +13,10 @@
             $(this.el).html(this.template)
         },
         find(selector) { return $(this.el).find(selector)[0] },
+
+        active(cl){
+            $(this.el).find('.percent').addClass(cl)
+        }
     }
     let model = {}
     let controller = {
@@ -49,6 +54,7 @@
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
+    
                     },
                     'FileUploaded': function (up, file, info) {
                         // 每个文件上传成功后,处理相关的事情
@@ -56,7 +62,7 @@
                         var response = JSON.parse(info.response);
                         var sourceLink = '//' + domain + '/' + encodeURIComponent(response.key); //获取上传成功后的文件的Url
 
-                        window.eventHub.emit('upload', { name: response.key, url: sourceLink })
+                        window.eventHub.emit('upload', JSON.parse(JSON.stringify({ name: response.key, url: sourceLink })))
                     },
                     'Error': function (up, err, errTip) {
                         //上传出错时,处理相关的事情

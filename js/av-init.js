@@ -55,3 +55,11 @@
 // activeLi(li){
 //   $(li).addClass('active').siblings('.active').removeClass('active')
 // }
+
+
+  // // 第一个参数是 className，第二个参数是 objectId
+  // var todo = AV.Object.createWithoutData('Song', "5a97b1089f545442015b2577");
+  // // 修改属性
+  // todo.set('name', '每周工程师会议，本周改为周三下午3点半。');
+  // // 保存到云端
+  // todo.save();
