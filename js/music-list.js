@@ -3,7 +3,6 @@
         el: ".layout-one",
         template: `<div class="music-list">歌曲列表</div>
         <ul>
-        <li>歌曲</li>
     </ul>
     <div class="new-songList">新建歌曲</div>
     `,

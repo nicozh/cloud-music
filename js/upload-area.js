@@ -14,17 +14,28 @@
         },
         find(selector) { return $(this.el).find(selector)[0] },
 
-        active(cl){
-            $(this.el).find('.percent').addClass(cl)
+        addShow(data) {
+            console.log(data)
+            if (data < 100) {
+                $(this.el).find('.percent').addClass("show")
+            } else {
+                $(this.el).find('.percent').removeClass("show")
+            }
         }
     }
     let model = {}
     let controller = {
         init(view, model) {
             this.view = view,
-                this.model = model,
-                this.view.render(this.model.data)
+            this.model = model,
+            this.view.render(this.model.data)
             this.initQiniu()
+            this.loadingShow()
+        },
+        loadingShow() {
+            window.eventHub.on("loading", (data) => {
+                this.view.addShow(data)
+            })
         },
         initQiniu() {
             var uploader = Qiniu.uploader({
@@ -54,7 +65,10 @@
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
-    
+                        // console.log(file.percent)   //上传进度  0-100
+
+                        window.eventHub.emit('loading', file.percent)
+
                     },
                     'FileUploaded': function (up, file, info) {
                         // 每个文件上传成功后,处理相关的事情
