@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//cdn1.lncld.net/static/js/3.6.0/av-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/song.css">
+    <title>网易云音乐</title>
+    <script>
+        var pageWidth = window.innerWidth
+        document.write('<style>html{font-size:' + pageWidth + 'px;}</style>')
+    </script>
+</head>
+
+<body>
+    <main>
+        <div class="top-box">
+            <span class="wy-logo"></span>
+            <span class="needle"></span>
+        </div>
+        <div class="song-wrap">
+            <div class="disc-box">
+                <img class="disc-plus" src="./images/play/disc-plus.png" alt="">
+                <img class="play-btn" src="./images/play/play_btn_3x.png" alt="">
+                <img class="disc-light" src="./images/play/disc_light-plus.png" alt="">
+                <img src="./images/play//disc_default.png" alt="" class="disc_default">
+                <img src="http://p1.music.126.net/ISyTI43-oCdTcNr4GfuP9Q==/17934134160919570.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0"
+                    alt="" class="song-img">
+            </div>
+            <div class="song-info"></div>
+        </div>
+        <audio class="music" src=""></audio>
+       
+        <div class="s-footer">
+            <div class="s-appBox">
+                <div class="s-app open">打开</div>
+                <div class="s-app download">下载</div>
+            </div>
+
+        </div>
+        
+    </main>
+
+    <script src="./js//av-init.js"></script>
+    <script>
+        var id = window.location.search.substring(4)
+        // console.log(id)
+        var query = new AV.Query('Song');
+        query.get(id).then(function (todo) {
+            // console.log(todo)
+            $('audio').attr('src', todo.attributes.url)
+            // 成功获得实例
+            // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
+        }, function (error) {
+            // 异常处理
+        });
+
+        $('.disc-box').on("click", () => {
+            $(".music")[0].play()
+        })
+        $(".po").on("click", () => {
+            $(".music")[0].pause()
+        })
+
+    </script>
+    
+</body>
+
+</html>
