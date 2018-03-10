@@ -1,5 +1,4 @@
-
-body{
+body {
     /* background: black */
     background: url(http://p1.music.126.net/ISyTI43-oCdTcNr4GfuP9Q==/17934134160919570.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0);
     margin: 0;
@@ -7,11 +6,13 @@ body{
     background-repeat: no-repeat;
     background-size: 200% 200%
 }
-.top-box{
+
+.top-box {
     position: relative;
     height: 0.15rem
 }
-.wy-logo{
+
+.wy-logo {
     background-image: url(//s3.music.126.net/m/s/img/logo_3x.png?d79ce509c143e0f745d972d8804b242a);
     background-size: 100px auto;
     display: block;
@@ -21,9 +22,9 @@ body{
     position: absolute;
     top: 20px;
     left: 12px;
-
 }
-.needle{
+
+.needle {
     display: block;
     background-image: url(../images/play/needle-plus.png);
     width: 0.2rem;
@@ -31,64 +32,70 @@ body{
     background-repeat: no-repeat;
     background-size: contain;
     position: absolute;
-    top:0;
-    left:50%;
-    z-index:1;
+    top: 0;
+    left: 50%;
+    z-index: 1;
     margin-left: -0.1rem
 }
 
-.song-wrap{
+.song-wrap {}
 
-}
-.disc-box{
+.disc-box {
     position: relative;
     width: 0.8rem;
     height: 0.8rem;
     margin: auto auto;
-    
-    
-    animation-duration: 3s;
+    animation-duration: 15s;
     animation-name: spin;
-    animation-iteration-count: infinite ;
-    animation-timing-function: linear ;
-    /* animation-play-state:  running;  */
-}
-.disc-box.active{
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
     animation-play-state: paused;
+    /*   */
 }
+
+ .disc-box.active {
+    animation-play-state: running;
+} 
+
 
 @keyframes spin {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
-  
     to {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
 
-.disc-light{
+.disc-light {
     position: absolute;
     width: 0.8rem;
     height: 0.8rem;
 }
-.play-btn{
+
+.play-btn {
     position: absolute;
     width: 0.16rem;
     height: 0.16rem;
     top: 50%;
     left: 50%;
-    margin-top:-0.08rem;
-    margin-left:-0.08rem;
-    border: 1px solid blue;
+    margin-top: -0.08rem;
+    margin-left: -0.08rem;
+    /* border: 1px solid blue; */
     z-index: 1;
 }
-.disc-plus{
+
+.play-btn.active {
+    display: none
+}
+
+.disc-plus {
     position: absolute;
     width: 0.8rem;
     height: 0.8rem;
 }
-.disc_default{
+
+.disc_default {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
@@ -99,7 +106,8 @@ body{
     margin-left: -0.25rem;
     overflow: hidden;
 }
-.song-img{
+
+.song-img {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
@@ -110,36 +118,79 @@ body{
     margin-left: -0.25rem;
     overflow: hidden;
 }
-.song-wrap>.song-info{
+
+.song-wrap>.song-info {
     /* border: 1px solid red; */
-    width: 314px;
-    height: 125px;
+    width: 0.8rem;
+    height: 0.14rem;
     margin: 25px auto 0;
 }
-.s-footer{
+
+.s-footer {
     width: 100%;
     height: 40px;
     position: fixed;
-    bottom: 10px; 
+    bottom: 10px;
 }
-.s-footer>.s-appBox{
+
+.s-footer>.s-appBox {
     display: flex;
     justify-content: space-around;
     height: 100%
 }
-.s-footer>.s-appBox>.s-app{
+
+.s-footer>.s-appBox>.s-app {
     height: 100%;
     width: 48%;
-    border:1px solid #d33a31;
-    border-radius: 30px ;
+    border: 1px solid #d33a31;
+    border-radius: 30px;
     font-size: 18px;
     line-height: 40px;
     text-align: center
 }
-.s-footer .open{
+
+.s-footer .open {
     color: #d33a31;
 }
-.s-footer .download{
+
+.s-footer .download {
     background: #D33A31;
     color: wheat
+}
+
+.page-down {
+    width: 17px;
+    height: 12px;
+    background-image: url(../images/play/page-down.png);
+    background-size: 100%;
+    display: block;
+    margin: 0 auto;
+    animation: up 1.2s steps(1) infinite
+}
+
+@keyframes up {
+    0% {
+        background-position: 0 0px
+    }
+    15% {
+        background-position: 0 -12px
+    }
+    30% {
+        background-position: 0 -24px
+    }
+    45% {
+        background-position: 0 -36px
+    }
+    60% {
+        background-position: 0 -48px
+    }
+    75% {
+        background-position: 0 -60px
+    }
+    90% {
+        background-position: 0 -72px
+    }
+    100% {
+        background-position: 0 -84px
+    }
 }

@@ -1,6 +1,7 @@
+
 {
     let view = {
-        el: '.page-2',
+        el: '.latest-songs',
         init() {
             this.$el = $(this.el)
         },
@@ -41,7 +42,7 @@
                 return a
             })
             ali.map((a) => {
-                this.$el.find('.hot-songs').append(a)
+                this.$el.append(a)
             })
         }
     }
@@ -65,24 +66,12 @@
             this.view = view
             this.model = model
             this.view.init()
-            this.bindEvents()
-            this.bindEventHub()
             this.getSongs()
         },
         getSongs() {
             this.model.findSongs().then(() => {
 
                 this.view.render(this.model.data)
-            })
-        },
-        bindEvents() {
-
-        },
-        bindEventHub() {
-            window.eventHub.on('tabClick', (data) => {
-                if (this.view.el === '.' + data) {
-                    this.view.$el.addClass('active').siblings().removeClass('active')
-                }
             })
         }
     }

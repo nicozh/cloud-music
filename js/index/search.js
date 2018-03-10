@@ -1,9 +1,6 @@
 {
     let view = {
-        el: '.page-2',
-        init() {
-            this.$el = $(this.el)
-        },
+        el: '.search-songs',
         template: `
         <a href="./song.html?id={{id}}">
             <li>
@@ -29,7 +26,9 @@
             </li>
         </a>
         `,
-
+        init() {
+            this.$el = $(this.el)
+        },
         render(data) {
             let { songs } = data
             let ali = songs.map((song) => {
@@ -41,24 +40,27 @@
                 return a
             })
             ali.map((a) => {
-                this.$el.find('.hot-songs').append(a)
+                this.$el.html(a)
             })
-        }
+        },  
     }
     let model = {
         data: {
             songs: []
         },
-        findSongs() {
-            var query = new AV.Query('Song');
+        searchSongs(value) {
+            let query = new AV.Query('Song');
+            query.contains('name', value)
             return query.find().then((Song) => {
                 Song.map((item) => {
                     // this.data.songs.push({ id: item.id, ...item.attributes })
                     this.data.songs.push(Object.assign({ id: item.id }, item.attributes))
+                    console.log(this.data.songs)
                 })
 
             })
         }
+
     }
     let controller = {
         init(view, model) {
@@ -66,8 +68,6 @@
             this.model = model
             this.view.init()
             this.bindEvents()
-            this.bindEventHub()
-            this.getSongs()
         },
         getSongs() {
             this.model.findSongs().then(() => {
@@ -76,15 +76,16 @@
             })
         },
         bindEvents() {
-
-        },
-        bindEventHub() {
-            window.eventHub.on('tabClick', (data) => {
-                if (this.view.el === '.' + data) {
-                    this.view.$el.addClass('active').siblings().removeClass('active')
-                }
+            $('.for-search').bind('submit', (e) => {
+                e.preventDefault()
+                let value = $('#search').val()
+                this.model.searchSongs(value).then(()=>{
+                    this.view.render(this.model.data)
+                })
+                
+                
             })
-        }
+        },
     }
     controller.init(view, model)
 }

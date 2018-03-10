@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <main>
+    <main class="play-music">
         <div class="top-box">
             <span class="wy-logo"></span>
             <span class="needle"></span>
@@ -32,41 +32,21 @@
             </div>
             <div class="song-info"></div>
         </div>
-        <audio class="music" src=""></audio>
-       
+        <i class="page-down"></i>
         <div class="s-footer">
             <div class="s-appBox">
                 <div class="s-app open">打开</div>
                 <div class="s-app download">下载</div>
             </div>
-
         </div>
-        
+        <audio class="music"></audio>
     </main>
-
     <script src="./js//av-init.js"></script>
+    <script src="./js/index//song.js"></script>
     <script>
-        var id = window.location.search.substring(4)
-        // console.log(id)
-        var query = new AV.Query('Song');
-        query.get(id).then(function (todo) {
-            // console.log(todo)
-            $('audio').attr('src', todo.attributes.url)
-            // 成功获得实例
-            // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
-        }, function (error) {
-            // 异常处理
-        });
-
-        $('.disc-box').on("click", () => {
-            $(".music")[0].play()
-        })
-        $(".po").on("click", () => {
-            $(".music")[0].pause()
-        })
 
     </script>
-    
+
 </body>
 
 </html>

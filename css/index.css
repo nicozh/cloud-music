@@ -7,10 +7,7 @@ ol,li {
     list-style: none
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1,h2,h3,h4 {
     font-weight: normal;
     font-size: 12px
 }
@@ -271,12 +268,6 @@ a:hover {
 }
 
 
-/* span{
-    display: inline-block;
-    padding-top: 1px
-} */
-
-
 /* footer样式 */
 
 footer {
@@ -330,17 +321,6 @@ footer>.f-box p {
     margin-left: 20px
     
 }
-/* .hot-banner::after{
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.2);
-    z-index: -1
-} */
 
 .hot-banner>.hot-in {
     background: url(../images/index_icon.png) no-repeat;
@@ -354,26 +334,56 @@ footer>.f-box p {
 
 .hot-songs {}
 
+
+
 /* page-3 */
 .for-search{
     padding: 15px 0
 }
 .s-search{
-    border:1px solid red ;
+    /* border:1px solid red ; */
     position: relative;
     padding: 0 30px;
-    width: 75%;
+    width: 80%;
     margin: 0 auto;
     border-radius: 30px;
-    background: #EBECEC
+    background: #EBECEC;
+    
 }
-#search{
+.search{
     width: 100%;
     height: 30px; background: #EBECEC;
-    border:none
+    border-style: none;
+    outline:none
 }
+
+/* #search:focus{border-width: 0} */
 .holder{
     position: absolute;
     font-size: 14px;
     line-height: 30px;
 }
+
+
+/* 放大镜图标 */
+.s-icon{
+    display: block;
+    width:8px;
+    height:8px;
+    border:1px solid #999;
+    border-radius:50%;
+    position: absolute;
+    top:50%;
+    margin-top:-6px;
+    left: 8px
+  }
+  .s-icon::after{
+    content:'';
+    display: block;
+    width:5px;
+    border-bottom:1px solid #999;
+    position:absolute;
+    top:110%;
+    left:80%;
+    transform:rotate(0.12turn)
+  }
