@@ -4,18 +4,19 @@
         init() {
             this.$el = $(this.el)
         },
-        show() {
-
-        },
-        hide() {
-
-        },
         animation(x) {
             if (x) {
-                this.$el.find('.disc-box').addClass('active')
+                this.$el.find('.disc-box').addClass('animate')
                 this.$el.find('.play-btn').addClass('active')
-            }else{
-                this.$el.find('.disc-box').removeClass('active')
+            } else {
+                let outBox = this.$el.find('.out-box');
+                let image = this.$el.find('.disc-box');
+                let iTransform = getComputedStyle(image[0]).transform;
+                let cTransform = getComputedStyle(outBox[0]).transform;
+                outBox[0].style.transform = cTransform === 'none'
+                    ? iTransform
+                    : iTransform.concat(cTransform);
+                this.$el.find('.disc-box').removeClass('animate')
                 this.$el.find('.play-btn').removeClass('active')
             }
         }
@@ -27,9 +28,9 @@
             // console.log(id)
             let query = new AV.Query('Song');
             return query.get(id)
-               .then( (todo)=> {
+                .then((todo) => {
                     // console.log(todo)
-                    this.data.url=todo.attributes.url
+                    this.data.url = todo.attributes.url
 
                     // 成功获得实例
                     // todo 就是 id 为 57328ca079bc44005c2472d0 的 Todo 对象实例
@@ -50,22 +51,28 @@
         },
         bindEvents() {
             var onOff = true
-            this.view.$el.find('.disc-box').on('click', () => {
-                
-                if(onOff){
+            let image = this.view.$el.find('.disc-box');
+
+            image.on('click', () => {
+                if (onOff) {
                     this.view.$el.find('.music')[0].play()
                     this.view.animation(onOff)
                     onOff = false
-                }else{
+                } else {
                     this.view.$el.find('.music')[0].pause()
                     this.view.animation(onOff)
-                    onOff=true
+                    onOff = true
+
                 }
-                
+
+
+
+
             })
-            $('.po').on('click', () => {
-                $('.music')[0].pause()
-            })
+
+            // $('.po').on('click', () => {
+            //     $('.music')[0].pause()
+            // })
         },
         setUrl() {
             this.model.getUrl().then(() => {

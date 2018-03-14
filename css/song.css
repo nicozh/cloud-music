@@ -1,10 +1,29 @@
 body {
-    /* background: black */
-    background: url(http://p1.music.126.net/ISyTI43-oCdTcNr4GfuP9Q==/17934134160919570.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0);
     margin: 0;
     padding: 0;
+    height: 100vh;
+}
+
+.play-music {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.play-music::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url(http://p1.music.126.net/ISyTI43-oCdTcNr4GfuP9Q==/17934134160919570.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0);
+    background-size: cover;
+    background-position: center center;
+    filter: blur(5px);          /* 背景模糊 */
     background-repeat: no-repeat;
-    background-size: 200% 200%
+    z-index: -5
 }
 
 .top-box {
@@ -45,28 +64,17 @@ body {
     width: 0.8rem;
     height: 0.8rem;
     margin: auto auto;
-    animation-duration: 15s;
-    animation-name: spin;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-play-state: paused;
-    /*   */
 }
 
- .disc-box.active {
-    animation-play-state: running;
-} 
-
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
+.animate {
+    animation: round 10s linear infinite;
+  }
+  
+  @keyframes round {
+    100% {
+      transform: rotate(1turn);
     }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
+  }
 .disc-light {
     position: absolute;
     width: 0.8rem;

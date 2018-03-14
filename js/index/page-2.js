@@ -6,6 +6,7 @@
         },
         template: `
         <a href="./song.html?id={{id}}">
+        <span class="song-number">{{number}}</span>
             <li>
                 <div class="song-in">
                     <p class="s-name">
@@ -32,17 +33,23 @@
 
         render(data) {
             let { songs } = data
+            let i = 1
             let ali = songs.map((song) => {
+                let n = String("0" + i).slice(-2)
                 let a = this.template
                     .replace('{{name}}', song.name)
                     .replace('{{singer}}', song.singer)
                     .replace('{{id}}', song.id)
-
+                    .replace('{{number}}', n)
+                i += 1
                 return a
             })
             ali.map((a) => {
                 this.$el.find('.hot-songs').append(a)
             })
+        },
+        setDate(date) {
+            this.$el.find('.up-date').text('更新日期：' + date)
         }
     }
     let model = {
@@ -65,18 +72,22 @@
             this.view = view
             this.model = model
             this.view.init()
-            this.bindEvents()
+           
             this.bindEventHub()
             this.getSongs()
+            this.getDate()
         },
         getSongs() {
             this.model.findSongs().then(() => {
-
                 this.view.render(this.model.data)
             })
         },
-        bindEvents() {
-
+        getDate() {
+            let date = new Date()
+            let month = date.getMonth()
+            let day = date.getDate()
+            let today = ('0' + month).slice(-2) + '月' + ('0' + day).slice(-2) + '日'
+            this.view.setDate(today)
         },
         bindEventHub() {
             window.eventHub.on('tabClick', (data) => {
