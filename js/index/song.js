@@ -51,7 +51,7 @@
         },
         bindEvents() {
             var onOff = true
-            let image = this.view.$el.find('.disc-box');
+            let image = this.view.$el.find('.song-wrap');
 
             image.on('click', () => {
                 if (onOff) {

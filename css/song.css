@@ -57,7 +57,9 @@ body {
     margin-left: -0.1rem
 }
 
-.song-wrap {}
+.song-wrap {
+    position: relative;
+}
 
 .disc-box {
     position: relative;
@@ -127,7 +129,7 @@ body {
     overflow: hidden;
 }
 
-.song-wrap>.song-info {
+.song-info {
     /* border: 1px solid red; */
     width: 0.8rem;
     height: 0.14rem;
